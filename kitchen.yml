@@ -19,13 +19,16 @@ provisioner:
 
 verifier:
   name: inspec
-
+  # the form of testing
+# this verifier is for unit testing
 platforms:
-  - name: ubuntu-18.04
-  - name: centos-7
+  - name: ubuntu/xenial64
 
+# this verifier is for intrgration  testing
 suites:
   - name: default
+    run_list:
+      -recipe[node::default]
     verifier:
       inspec_tests:
         - test/integration/default
